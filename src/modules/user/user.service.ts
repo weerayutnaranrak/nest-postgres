@@ -13,14 +13,14 @@ export class UserService {
     private usersRepository: Repository<UserEntity>,
     private redisService: RedisService,
   ) {}
-  async create(createUserDto: CreateUserDto) {
-    const user = await this.usersRepository.save(createUserDto);
+  async create(createUserDto: CreateUserDto): Promise<UserEntity> {
+    const user: UserEntity = await this.usersRepository.save(createUserDto);
     await this.redisService.del('user');
     return user;
   }
 
-  async findAll() {
-    let user = await this.redisService.get('user');
+  async findAll(): Promise<UserEntity[]> {
+    let user = (await this.redisService.get('user')) as UserEntity[];
     if (!user) {
       console.log('loging ...');
       user = await this.usersRepository.find();
@@ -30,7 +30,7 @@ export class UserService {
     return user;
   }
 
-  async findOne(id: string) {
+  async findOne(id: string): Promise<UserEntity> {
     const user = await this.usersRepository.find({
       where: {
         id: +id,
@@ -39,14 +39,15 @@ export class UserService {
     return user[0];
   }
 
-  async update(id: string, updateUserDto: UpdateUserDto) {
-    const user = await this.usersRepository.update(id, updateUserDto);
+  async update(id: string, updateUserDto: UpdateUserDto): Promise<UserEntity> {
+    await this.usersRepository.update(id, updateUserDto);
     await this.redisService.del('user');
-    return user;
+
+    return new UserEntity();
   }
-  async remove(id: string) {
-    const user = await this.usersRepository.delete(id);
+  async remove(id: string): Promise<UserEntity> {
+    await this.usersRepository.delete(id);
     await this.redisService.del('user');
-    return user;
+    return new UserEntity();
   }
 }
