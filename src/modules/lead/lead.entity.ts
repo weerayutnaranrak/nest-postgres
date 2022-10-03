@@ -1,7 +1,8 @@
+import { LeadStatus } from 'src/constants/lead';
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('users')
-class UserEntity {
+@Entity('leads')
+class LeadEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -10,5 +11,11 @@ class UserEntity {
 
   @Column()
   lastName: string;
+
+  @Column()
+  phone: string;
+
+  @Column()
+  status: LeadStatus;
 }
-export default UserEntity;
+export default LeadEntity;

@@ -1,9 +1,9 @@
 import { IsNotEmpty } from 'class-validator';
 
-export class CreateUserDto {
+export class CreateFormTransactionDto {
   @IsNotEmpty()
-  firstName: string;
+  product_id: string;
 
   @IsNotEmpty()
-  lastName: string;
+  lead_id: string;
 }
