@@ -6,9 +6,11 @@ import {
   Param,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { CreateFormTransactionDto } from './dto/create-form-transaction.dto';
+import { QueryFormTransactionDto } from './dto/query-form-transaction.dto';
 import { UpdateFormTransactionDto } from './dto/update-form-transaction.dto';
 import { FormTransactionService } from './form-transaction.service';
 
@@ -25,8 +27,8 @@ export class FormTransactionController {
   }
 
   @Get()
-  async findAll() {
-    return this.formTransactionService.findAll();
+  async findAll(@Query('limit') query: QueryFormTransactionDto) {
+    return this.formTransactionService.findAll(query?.limit);
   }
 
   @Get(':id')
@@ -37,6 +39,7 @@ export class FormTransactionController {
   @Patch(':id')
   async update(
     @Param('id') id: string,
+
     @Body() updateFormTransactionDto: UpdateFormTransactionDto,
   ) {
     return await this.formTransactionService.update(

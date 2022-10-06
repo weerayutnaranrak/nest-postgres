@@ -6,11 +6,13 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { LeadService } from './lead.service';
 import { CreateLeadDto } from './dto/create-lead.dto';
 import { UpdateLeadDto } from './dto/update-lead.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { QueryLeadDto } from './dto/query-lead.dto';
 @ApiTags('Lead')
 @Controller('lead')
 export class LeadController {
@@ -22,8 +24,8 @@ export class LeadController {
   }
 
   @Get()
-  async findAll() {
-    return this.leadService.findAll();
+  async findAll(@Query() query: QueryLeadDto) {
+    return this.leadService.findAll(query?.limit);
   }
 
   @Get(':id')

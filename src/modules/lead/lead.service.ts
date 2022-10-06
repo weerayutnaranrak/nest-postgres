@@ -17,8 +17,8 @@ export class LeadService {
     return lead;
   }
 
-  async findAll() {
-    const lead = await this.leadRepo.find();
+  async findAll(limit = 10) {
+    const lead = await this.leadRepo.find({ take: limit });
     return lead;
   }
 

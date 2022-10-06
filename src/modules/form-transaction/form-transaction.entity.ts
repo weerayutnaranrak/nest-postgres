@@ -1,9 +1,9 @@
 import {
   Entity,
-  Column,
   PrimaryGeneratedColumn,
   ManyToOne,
   JoinTable,
+  JoinColumn,
 } from 'typeorm';
 import LeadEntity from '../lead/lead.entity';
 import ProductEntity from '../product/product.entity';
@@ -16,12 +16,13 @@ class FormTransationEntity {
   @ManyToOne((type) => ProductEntity, {
     cascade: true,
   })
-  @JoinTable()
+  @JoinColumn({ name: 'product_id' })
   product: ProductEntity;
 
   @ManyToOne((type) => LeadEntity, {
     cascade: true,
   })
+  @JoinColumn({ name: 'lead_id' })
   lead: LeadEntity;
 }
 export default FormTransationEntity;

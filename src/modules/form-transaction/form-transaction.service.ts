@@ -29,9 +29,10 @@ export class FormTransactionService {
     return formTransaction;
   }
 
-  async findAll() {
+  async findAll(limit = 10) {
     const formTransaction = await this.formTransactionRepo.find({
       relations: ['lead', 'product'],
+      take: limit,
     });
     return formTransaction;
   }
