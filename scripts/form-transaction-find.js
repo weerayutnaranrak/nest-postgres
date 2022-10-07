@@ -3,23 +3,15 @@ import { check, sleep } from 'k6';
 
 export let options = {
   stages: [
-    // { duration: '3m', target: 50 },
-
-    // { duration: '5m', target: 50 },
-
-    // { duration: '2m', target: 0 },
-
-    { duration: '1m', target: 50 },
-
-    { duration: '3m', target: 50 },
-
+    { duration: '1m', target: 1000 },
+    { duration: '3m', target: 1000 },
     { duration: '1m', target: 0 },
   ],
 };
 
 export default function () {
-  const host1 = 'http://localhost:3000/form-transaction';
-  const host2 = 'http://localhost:3000/form-transaction2';
+  const host1 = 'http://localhost:3000/form-transaction-typeorm';
+  const host2 = 'http://localhost:3000/form-transaction-pg';
   const headers = {
     headers: { Accepts: 'application/json' },
   };

@@ -3,8 +3,8 @@ import { ApiTags } from '@nestjs/swagger';
 import { CreateFormTransactionDto } from '../form-transaction/dto/create-form-transaction.dto';
 import { QueryFormTransactionDto } from '../form-transaction/dto/query-form-transaction.dto';
 import { FormTransaction2Service } from './form-transaction2.service';
-@ApiTags('form-transaction2')
-@Controller('form-transaction2')
+@ApiTags('form-transaction-pg')
+@Controller('form-transaction-pg')
 export class FormTransaction2Controller {
   constructor(
     private readonly formTransaction2Service: FormTransaction2Service,

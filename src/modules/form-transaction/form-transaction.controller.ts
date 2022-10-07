@@ -14,8 +14,8 @@ import { QueryFormTransactionDto } from './dto/query-form-transaction.dto';
 import { UpdateFormTransactionDto } from './dto/update-form-transaction.dto';
 import { FormTransactionService } from './form-transaction.service';
 
-@ApiTags('form-transaction')
-@Controller('form-transaction')
+@ApiTags('form-transaction-typeorm')
+@Controller('form-transaction-typeorm')
 export class FormTransactionController {
   constructor(
     private readonly formTransactionService: FormTransactionService,

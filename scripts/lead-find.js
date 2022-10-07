@@ -2,23 +2,21 @@ import http from 'k6/http';
 import { check, sleep } from 'k6';
 
 export let options = {
+  // vus: 400,
+  // duration: '30s',
   stages: [
     // { duration: '3m', target: 50 },
-
     // { duration: '5m', target: 50 },
-
     // { duration: '2m', target: 0 },
-    { duration: '1m', target: 50 },
-
-    { duration: '3m', target: 50 },
-
+    { duration: '1m', target: 1000 },
+    { duration: '3m', target: 1000 },
     { duration: '1m', target: 0 },
   ],
 };
 
 export default function () {
-  const host1 = 'http://localhost:3000/lead';
-  const host2 = 'http://localhost:3000/lead2';
+  const host1 = 'http://localhost:3000/lead-typeorm';
+  const host2 = 'http://localhost:3000/lead-pg';
   const headers = {
     headers: { Accepts: 'application/json' },
   };

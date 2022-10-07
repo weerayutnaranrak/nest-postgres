@@ -13,8 +13,8 @@ import { CreateLeadDto } from './dto/create-lead.dto';
 import { UpdateLeadDto } from './dto/update-lead.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { QueryLeadDto } from './dto/query-lead.dto';
-@ApiTags('Lead')
-@Controller('lead')
+@ApiTags('Lead typeorm')
+@Controller('lead-typeorm')
 export class LeadController {
   constructor(private readonly leadService: LeadService) {}
 
